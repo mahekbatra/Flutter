@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-//create Deployment
-class MyC extends StatefulWidget {
+//Delete Deployment
+class MyDC extends StatefulWidget {
    
       
   @override
-  _MyCState createState() => _MyCState();
+  _MyDCState createState() => _MyDCState();
 }
 
-class _MyCState extends State<MyC> {
+class _MyDCState extends State<MyDC> {
    web() async{
     
-      var idd="1";
-      var command =idd+" "+iname.text+" "+cname.text;
+      var idd="2";
+      var command =idd+" "+cname.text;
       print(command);
       var url = Uri.http("192.168.43.83","/cgi-bin/doc.py",{"x":command});
       var response = await http.get(url);
-       showModalBottomSheet(
+      showModalBottomSheet(
              backgroundColor: Colors.black,
              context: context,
              shape:RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
@@ -41,9 +41,7 @@ class _MyCState extends State<MyC> {
              );
    }
 
- final iname = TextEditingController();
-
- final cname = TextEditingController();
+  final cname = TextEditingController();
 
  @override
   Widget build(BuildContext context) {
@@ -55,18 +53,18 @@ class _MyCState extends State<MyC> {
           children: [
             
             Text(
-              "Please Enter Container and Image name",
+              "Please Enter Container name",
                 style: TextStyle(
-                fontSize: 22.0,
+                fontSize: 25.0,
                 color: Colors.black,
-                fontWeight: FontWeight.bold,
+                fontWeight:FontWeight.bold,
               )
             ),
-             SizedBox(height:30),
+           SizedBox(height: 60,),
                TextFormField(
                  controller: cname,
                  decoration: InputDecoration(
-                  labelText: "Container Name",
+                  labelText: "Deployment Name",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2.0))),
               autofocus: true,
@@ -78,21 +76,7 @@ class _MyCState extends State<MyC> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10,),
-             TextFormField(
-               controller: iname,
-              decoration: InputDecoration(
-                  labelText: "Image Name",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2.0))),
-              autofocus: true,
-  
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20,),
+            
             ElevatedButton(onPressed:web,
              child: Text("Submit")),
           ],

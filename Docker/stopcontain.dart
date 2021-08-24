@@ -1,19 +1,20 @@
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 //create Deployment
-class MyC extends StatefulWidget {
+class MySC extends StatefulWidget {
    
       
   @override
-  _MyCState createState() => _MyCState();
+  _MySCState createState() => _MySCState();
 }
 
-class _MyCState extends State<MyC> {
+class _MySCState extends State<MySC> {
    web() async{
     
-      var idd="1";
-      var command =idd+" "+iname.text+" "+cname.text;
+      var idd="3";
+      var command =idd+" "+cname.text;
       print(command);
       var url = Uri.http("192.168.43.83","/cgi-bin/doc.py",{"x":command});
       var response = await http.get(url);
@@ -41,7 +42,7 @@ class _MyCState extends State<MyC> {
              );
    }
 
- final iname = TextEditingController();
+
 
  final cname = TextEditingController();
 
@@ -77,24 +78,9 @@ class _MyCState extends State<MyC> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 10,),
-             TextFormField(
-               controller: iname,
-              decoration: InputDecoration(
-                  labelText: "Image Name",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2.0))),
-              autofocus: true,
-  
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed:web,
+             ElevatedButton(onPressed:web,
              child: Text("Submit")),
+           
           ],
         ));
   }
